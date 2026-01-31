@@ -15,7 +15,12 @@ using System.Windows.Threading;
 using System.IO;
 using System.Security.Cryptography;
 using System.Data.SqlClient;
-
+/*
+ (*|*)
+(#####)
+(#####)
+ _| |_
+*/
 namespace SKLAD
 {
     public static class UserSession
