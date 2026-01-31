@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище booksModelContainer" CdmEntityContainer="booksEntities">
+    <EntitySetMapping Name="books">
+      <EntityTypeMapping TypeName="booksModel.books">
+        <MappingFragment StoreEntitySet="books">
+          <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+          <ScalarProperty Name="Автор" ColumnName="Автор" />
+          <ScalarProperty Name="Статус" ColumnName="Статус" />
+          <ScalarProperty Name="Место_хранения" ColumnName="Место хранения" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employers">
+      <EntityTypeMapping TypeName="booksModel.employers">
+        <MappingFragment StoreEntitySet="employers">
+          <ScalarProperty Name="Логин" ColumnName="Логин" />
+          <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="Имя" ColumnName="Имя" />
+          <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+          <ScalarProperty Name="Должность" ColumnName="Должность" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="extradition">
+      <EntityTypeMapping TypeName="booksModel.extradition">
+        <MappingFragment StoreEntitySet="extradition">
+          <ScalarProperty Name="ID_выдачи" ColumnName="ID выдачи" />
+          <ScalarProperty Name="Книга" ColumnName="Книга" />
+          <ScalarProperty Name="Отвественный" ColumnName="Отвественный" />
+          <ScalarProperty Name="Получатель" ColumnName="Получатель" />
+          <ScalarProperty Name="Дата_выдачи" ColumnName="Дата выдачи" />
+          <ScalarProperty Name="Дата_возврата" ColumnName="Дата возврата" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="history">
+      <EntityTypeMapping TypeName="booksModel.history">
+        <MappingFragment StoreEntitySet="history">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Номер_выдачи" ColumnName="Номер выдачи" />
+          <ScalarProperty Name="Наименование_книги" ColumnName="Наименование книги" />
+          <ScalarProperty Name="Отвественный" ColumnName="Отвественный" />
+          <ScalarProperty Name="Получатель" ColumnName="Получатель" />
+          <ScalarProperty Name="Дата_выдачи" ColumnName="Дата выдачи" />
+          <ScalarProperty Name="Дата_возврата" ColumnName="Дата возврата" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="recipient">
+      <EntityTypeMapping TypeName="booksModel.recipient">
+        <MappingFragment StoreEntitySet="recipient">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="Имя" ColumnName="Имя" />
+          <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+          <ScalarProperty Name="Номер_телефона" ColumnName="Номер телефона" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="booksModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

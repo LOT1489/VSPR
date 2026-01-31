@@ -1,0 +1,21 @@
+﻿<Window x:Class="SKLAD.ProsmotrV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SKLAD"
+        mc:Ignorable="d"
+        Title="ProsmotrV" Height="450" Width="800">
+    <Grid>
+        <Button Content="Назад" Click="exit" HorizontalAlignment="Left" Margin="53,385,0,0" VerticalAlignment="Top" Background="#FF3A90C9"/>
+        <DataGrid x:Name="datagr" AutoGenerateColumns="False" Margin="0,0,0,52" Background="White">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер выдачи" Binding="{Binding [ID выдачи]}"/>
+                <DataGridTextColumn Header="Книга" Binding="{Binding Книга}"/>
+                <DataGridTextColumn Header="Ответственный" Binding="{Binding Ответственный}"/>
+                <DataGridTextColumn Header="Получатель" Binding="{Binding Получатель}"/>
+                <DataGridTextColumn Header="Дата выдачи" Binding="{Binding [Дата выдачи]}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

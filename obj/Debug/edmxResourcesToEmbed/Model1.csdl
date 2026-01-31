@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="booksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="books">
+    <Key>
+      <PropertyRef Name="Наименование" />
+    </Key>
+    <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Автор" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Статус" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Место_хранения" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="extradition" Relationship="Self.FK_extradition_books" FromRole="books" ToRole="extradition" />
+  </EntityType>
+  <EntityType Name="employers">
+    <Key>
+      <PropertyRef Name="Логин" />
+    </Key>
+    <Property Name="Логин" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Пароль" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Должность" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="extradition" Relationship="Self.FK_extradition_employers" FromRole="employers" ToRole="extradition" />
+  </EntityType>
+  <EntityType Name="extradition">
+    <Key>
+      <PropertyRef Name="ID_выдачи" />
+    </Key>
+    <Property Name="ID_выдачи" Type="Int32" Nullable="false" />
+    <Property Name="Книга" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Отвественный" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Получатель" Type="Int32" />
+    <Property Name="Дата_выдачи" Type="DateTime" Precision="0" />
+    <Property Name="Дата_возврата" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="books" Relationship="Self.FK_extradition_books" FromRole="extradition" ToRole="books" />
+    <NavigationProperty Name="employers" Relationship="Self.FK_extradition_employers" FromRole="extradition" ToRole="employers" />
+    <NavigationProperty Name="recipient" Relationship="Self.FK_extradition_recipient" FromRole="extradition" ToRole="recipient" />
+    <NavigationProperty Name="history" Relationship="Self.FK_history_extradition" FromRole="extradition" ToRole="history" />
+  </EntityType>
+  <EntityType Name="history">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Номер_выдачи" Type="Int32" />
+    <Property Name="Наименование_книги" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Отвественный" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Получатель" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Дата_выдачи" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Дата_возврата" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="extradition" Relationship="Self.FK_history_extradition" FromRole="history" ToRole="extradition" />
+  </EntityType>
+  <EntityType Name="recipient">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Номер_телефона" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="extradition" Relationship="Self.FK_extradition_recipient" FromRole="recipient" ToRole="extradition" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_extradition_books">
+    <End Role="books" Type="Self.books" Multiplicity="0..1" />
+    <End Role="extradition" Type="Self.extradition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="books">
+        <PropertyRef Name="Наименование" />
+      </Principal>
+      <Dependent Role="extradition">
+        <PropertyRef Name="Книга" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_extradition_employers">
+    <End Role="employers" Type="Self.employers" Multiplicity="0..1" />
+    <End Role="extradition" Type="Self.extradition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employers">
+        <PropertyRef Name="Логин" />
+      </Principal>
+      <Dependent Role="extradition">
+        <PropertyRef Name="Отвественный" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_extradition_recipient">
+    <End Role="recipient" Type="Self.recipient" Multiplicity="0..1" />
+    <End Role="extradition" Type="Self.extradition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="recipient">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="extradition">
+        <PropertyRef Name="Получатель" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_history_extradition">
+    <End Role="extradition" Type="Self.extradition" Multiplicity="0..1" />
+    <End Role="history" Type="Self.history" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="extradition">
+        <PropertyRef Name="ID_выдачи" />
+      </Principal>
+      <Dependent Role="history">
+        <PropertyRef Name="Номер_выдачи" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="booksEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="books" EntityType="Self.books" />
+    <EntitySet Name="employers" EntityType="Self.employers" />
+    <EntitySet Name="extradition" EntityType="Self.extradition" />
+    <EntitySet Name="history" EntityType="Self.history" />
+    <EntitySet Name="recipient" EntityType="Self.recipient" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_extradition_books" Association="Self.FK_extradition_books">
+      <End Role="books" EntitySet="books" />
+      <End Role="extradition" EntitySet="extradition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_extradition_employers" Association="Self.FK_extradition_employers">
+      <End Role="employers" EntitySet="employers" />
+      <End Role="extradition" EntitySet="extradition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_extradition_recipient" Association="Self.FK_extradition_recipient">
+      <End Role="recipient" EntitySet="recipient" />
+      <End Role="extradition" EntitySet="extradition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_history_extradition" Association="Self.FK_history_extradition">
+      <End Role="extradition" EntitySet="extradition" />
+      <End Role="history" EntitySet="history" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

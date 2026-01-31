@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище booksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="books">
+    <Key>
+      <PropertyRef Name="Наименование" />
+    </Key>
+    <Property Name="Наименование" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Автор" Type="varchar" MaxLength="50" />
+    <Property Name="Статус" Type="varchar" MaxLength="50" />
+    <Property Name="Место хранения" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="employers">
+    <Key>
+      <PropertyRef Name="Логин" />
+    </Key>
+    <Property Name="Логин" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Пароль" Type="varchar" MaxLength="50" />
+    <Property Name="Фамилия" Type="varchar" MaxLength="50" />
+    <Property Name="Имя" Type="varchar" MaxLength="50" />
+    <Property Name="Отчество" Type="varchar" MaxLength="50" />
+    <Property Name="Должность" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="extradition">
+    <Key>
+      <PropertyRef Name="ID выдачи" />
+    </Key>
+    <Property Name="ID выдачи" Type="int" Nullable="false" />
+    <Property Name="Книга" Type="varchar" MaxLength="50" />
+    <Property Name="Отвественный" Type="varchar" MaxLength="50" />
+    <Property Name="Получатель" Type="int" />
+    <Property Name="Дата выдачи" Type="date" />
+    <Property Name="Дата возврата" Type="date" />
+  </EntityType>
+  <EntityType Name="history">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Номер выдачи" Type="int" />
+    <Property Name="Наименование книги" Type="varchar" MaxLength="50" />
+    <Property Name="Отвественный" Type="varchar" MaxLength="50" />
+    <Property Name="Получатель" Type="varchar" MaxLength="50" />
+    <Property Name="Дата выдачи" Type="varchar" MaxLength="50" />
+    <Property Name="Дата возврата" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="recipient">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Фамилия" Type="varchar" MaxLength="50" />
+    <Property Name="Имя" Type="varchar" MaxLength="50" />
+    <Property Name="Отчество" Type="varchar" MaxLength="50" />
+    <Property Name="Номер телефона" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_extradition_books">
+    <End Role="books" Type="Self.books" Multiplicity="0..1" />
+    <End Role="extradition" Type="Self.extradition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="books">
+        <PropertyRef Name="Наименование" />
+      </Principal>
+      <Dependent Role="extradition">
+        <PropertyRef Name="Книга" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_extradition_employers">
+    <End Role="employers" Type="Self.employers" Multiplicity="0..1" />
+    <End Role="extradition" Type="Self.extradition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employers">
+        <PropertyRef Name="Логин" />
+      </Principal>
+      <Dependent Role="extradition">
+        <PropertyRef Name="Отвественный" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_extradition_recipient">
+    <End Role="recipient" Type="Self.recipient" Multiplicity="0..1" />
+    <End Role="extradition" Type="Self.extradition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="recipient">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="extradition">
+        <PropertyRef Name="Получатель" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_history_extradition">
+    <End Role="extradition" Type="Self.extradition" Multiplicity="0..1" />
+    <End Role="history" Type="Self.history" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="extradition">
+        <PropertyRef Name="ID выдачи" />
+      </Principal>
+      <Dependent Role="history">
+        <PropertyRef Name="Номер выдачи" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище booksModelContainer">
+    <EntitySet Name="books" EntityType="Self.books" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employers" EntityType="Self.employers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="extradition" EntityType="Self.extradition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="history" EntityType="Self.history" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="recipient" EntityType="Self.recipient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_extradition_books" Association="Self.FK_extradition_books">
+      <End Role="books" EntitySet="books" />
+      <End Role="extradition" EntitySet="extradition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_extradition_employers" Association="Self.FK_extradition_employers">
+      <End Role="employers" EntitySet="employers" />
+      <End Role="extradition" EntitySet="extradition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_extradition_recipient" Association="Self.FK_extradition_recipient">
+      <End Role="recipient" EntitySet="recipient" />
+      <End Role="extradition" EntitySet="extradition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_history_extradition" Association="Self.FK_history_extradition">
+      <End Role="extradition" EntitySet="extradition" />
+      <End Role="history" EntitySet="history" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

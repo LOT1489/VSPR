@@ -1,0 +1,16 @@
+﻿<Window x:Class="SKLAD.logist"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SKLAD"
+        mc:Ignorable="d"
+        Title="logist" Height="450" Width="800">
+    <Grid Background="White">
+        <Button Content="Читатели" Click="togruz" HorizontalAlignment="Center" Margin="0,108,0,0" VerticalAlignment="Top" Background="#FF3A90C9"/>
+        <Button Content="Книги" Click="tocell" HorizontalAlignment="Center" Margin="0,149,0,0" VerticalAlignment="Top" Background="#FF3A90C5"/>
+        <Button Content="Выход из аккаунта" Click="exit" HorizontalAlignment="Left" Margin="20,395,0,0" VerticalAlignment="Top" Background="#FF3A90C9"/>
+        <Label Content="Добро пожаловать" HorizontalAlignment="Left" Margin="73,65,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,24 @@
+﻿<Window x:Class="SKLAD.Extradition"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SKLAD"
+        mc:Ignorable="d"
+        Title="Extradition" Height="450" Width="800">
+    <Grid>
+        <Button Content="Назад" HorizontalAlignment="Left" Margin="32,382,0,0" VerticalAlignment="Top" Click="Exit" Background="#FF3A90C9"/>
+        <ComboBox x:Name="bookS" DisplayMemberPath="Name" IsEditable="True" HorizontalAlignment="Left" Margin="105,29,0,0" VerticalAlignment="Top" Width="188"/>
+        <ComboBox x:Name="readerS" DisplayMemberPath="Name" SelectedValuePath="ID" IsEditable="True" HorizontalAlignment="Left" Margin="105,68,0,0" VerticalAlignment="Top" Width="188"/>
+        <Button Content="Выдать" Click="Extr" HorizontalAlignment="Left" Margin="143,139,0,0" VerticalAlignment="Top" Background="#FF3A90C9"/>
+        <Label Content="Выдать" HorizontalAlignment="Left" Margin="19,25,0,0" VerticalAlignment="Top"/>
+        <Label Content="Читателю" HorizontalAlignment="Left" Margin="19,66,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="date" HorizontalAlignment="Left" Margin="105,108,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Дата" HorizontalAlignment="Left" Margin="26,104,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="vozvrat" IsEditable="True" HorizontalAlignment="Left" Margin="568,57,0,0" VerticalAlignment="Top" Width="188"/>
+        <Button Content="Вернуть" Click="Voz" HorizontalAlignment="Left" Margin="642,134,0,0" VerticalAlignment="Top" Background="#FF3A90C9"/>
+        <Label Content="Вернуть книгу" HorizontalAlignment="Left" Margin="618,22,0,0" VerticalAlignment="Top"/>
+        <Label Content="Дата возврата" HorizontalAlignment="Left" Margin="460,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.641,0.579"/>
+        <TextBox x:Name="data" HorizontalAlignment="Left" Margin="602,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+    </Grid>
+</Window>
